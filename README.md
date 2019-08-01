@@ -6,7 +6,7 @@ It was written to combine game assets into 1 cache file
 which can be retrieved during runtime.
 
 [DOWNLOAD PREBUILT JAR](https://github.com/DTanJP/Asset-Cache-Packer/raw/master/Download/AssetPacker.jar)
-[Standalone cache library](https://github.com/DTanJP/Asset-Cache)
+[Standalone cache API](https://github.com/DTanJP/Asset-Cache)
 
 I tried to keep this as basic and simple as possible.
 This is just a way for indie game developers to:
@@ -33,4 +33,4 @@ The same applies for removing files.
 # ! NOTICE !
 Don't bother to import the cache source code from this application onto your projects as it's integrated with the application and you will end up doing some refactoring. Check [HERE for the standalone cache class](https://github.com/DTanJP/Asset-Cache)
 
-* I will continue to add small tweaks and improvements onto this tool, please let me know of any bugs that you have found and I will do my best to fix it and post a patch
+* I will continue to add small tweaks and improvements onto this tool, please let me know of any bugs that you have found and I will do my best to fix it and post patches as soon as I can
