@@ -5,6 +5,8 @@ I've written this application tool to create and edit .cache files
 It was written to combine game assets into 1 cache file
 which can be retrieved during runtime.
 
+[DOWNLOAD PREBUILT JAR](https://github.com/DTanJP/Asset-Cache-Packer/raw/master/Download/AssetPacker.jar)
+
 I tried to keep this as basic and simple as possible.
 This is just a way for indie game developers to:
 1. Manage and organize their assets
