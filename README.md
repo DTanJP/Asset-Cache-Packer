@@ -2,8 +2,8 @@
 ### An application tool to create and edit caches which contains assets
 
 I've written this application tool to create and edit .cache files
-It was written to combine game assets into 1 cache file
-which can be retrieved during runtime.
+It was written to combine game assets into 1 cache file.
+The assets can be retrieved during runtime in an array of byte form.
 
 [DOWNLOAD PREBUILT JAR](https://github.com/DTanJP/Asset-Cache-Packer/raw/master/Download/AssetPacker.jar)  
 [Standalone cache API](https://github.com/DTanJP/Asset-Cache)
@@ -15,9 +15,9 @@ This is just a way for indie game developers to:
 
 
 *This is kind of a double edge sword here. If an game developer uses this and you also happen to have this tool, you can rip out their assets.
-However in order to block against that, you just have to download a copy of this and modify the source code to encrypt the bytes data upon saving onto the cache or create some new pattern that creates a different kind of cache model making my application tool unable to parse it correctly.*
+However in order to block against that, you just have to download a copy of this and modify the source code to encrypt the bytes data upon saving onto the cache or create some new pattern that creates a different kind of cache model format making my application tool unable to parse it correctly.*
 
-*I strongly encourage you to download this and build it yourself instead of going for the prebuilt jar. This way you can implement encryption or a different cache model*
+*I strongly encourage anyone to download this and build it yourself instead of going for the prebuilt jar. This way you can implement encryption or a different cache model format*
 
 Instructions
 1. Start off by pressing "Create cache" or "Load cache"
