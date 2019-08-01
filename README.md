@@ -23,7 +23,7 @@ Instructions
 1. Start off by pressing "Create cache" or "Load cache"
 ![The main view of the application](https://raw.githubusercontent.com/DTanJP/Asset-Cache-Packer/master/images/Screenshot_1.png)
 
-2. Afterwards you can being to add files, but you must remember to pack the cache afterwards inorder to update the cache file
+2. Afterwards you can add/remove files, but you must remember to pack the cache afterwards inorder to update the cache file
 Simply adding files only adds it to memory. By packing it, you overwrite the cache file with the current files in memory.
 The same applies for removing files.
 ![Viewing a cache](https://raw.githubusercontent.com/DTanJP/Asset-Cache-Packer/master/images/Screenshot_2.png)
