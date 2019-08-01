@@ -30,6 +30,6 @@ The same applies for removing files.
 3. Double clicking the names of the files on the right lets you read them, unless if they're an image (jpg, png, gif), then they will be rendered onto the left panel
 
 # ! NOTICE !
-Don't bother to import the cache source code from this application onto your projects as it's integrated with the application and you will end up doing some refactoring. Check my other repository for the standalone cache class
+Don't bother to import the cache source code from this application onto your projects as it's integrated with the application and you will end up doing some refactoring. Check [HERE for the standalone cache class](https://github.com/DTanJP/Asset-Cache)
 
 * I will continue to add small tweaks and improvements onto this tool, please let me know of any bugs that you have found and I will do my best to fix it and post a patch
