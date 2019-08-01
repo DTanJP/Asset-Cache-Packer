@@ -12,7 +12,7 @@ This is just a way for indie game developers to:
 
 
 *This is kind of a double edge sword here. If an game developer uses this and you also happen to have this tool, you can rip out their assets.
-However in order to block against that, you just have to download a copy of this and modify the source code to encrypt the bytes data upon saving onto the cache or create some new pattern that create a different kind of cache file making my application tool unable to read it.*
+However in order to block against that, you just have to download a copy of this and modify the source code to encrypt the bytes data upon saving onto the cache or create some new pattern that create a different kind of cache file making my application tool unable to parse it correctly.*
 
 *I strongly encourage you to download this and build it yourself instead of going for the prebuilt jar. This way you can implement encryption or a different cache model*
 
