@@ -7,10 +7,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
@@ -22,8 +24,10 @@ import javax.swing.JList;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
+import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.border.BevelBorder;
@@ -130,7 +134,7 @@ public class MainApp extends JPanel {
 					if(!file.isFile()) return;
 					cache.registerFile(file.getAbsolutePath());
 					list.addElement(file.getName());
-					//progressBar.setMaximum(cache.getTotalFiles());
+					progressBar.setMaximum(cache.getTotalFiles());
 				}
 			}
 			
@@ -151,6 +155,8 @@ public class MainApp extends JPanel {
 					if(!file.isFile() || !file.getAbsolutePath().endsWith(".cache")) return;
 					cache = new Cache(file.getAbsolutePath());
 					cache.load();
+					list.removeAllElements();
+					display.setImage(null);
 					for(String s : cache.fileNames())
 						list.addElement(s);
 				}
@@ -179,7 +185,6 @@ public class MainApp extends JPanel {
 			      	label_cachePath.setText("Cache: "+file.getAbsolutePath());
 			      	label_cacheSize.setText("Cache size: "+cache.getCacheSize());
 			      	label_selectedFile.setText("Selected file: ");
-			      	//progressBar.setMaximum(0);
 			      	display.setImage(null);
 			      }
 			    }
@@ -187,6 +192,44 @@ public class MainApp extends JPanel {
 			
 		});
 		add(btn_createCache);
+		
+		btn_packDirectory = new JButton("Pack directory");
+		btn_packDirectory.setBounds(140, 605, 120, 25);
+		btn_packDirectory.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int retval = directoryChooser.showOpenDialog(instance);
+			    if (retval == JFileChooser.APPROVE_OPTION) {
+			    	File file = directoryChooser.getSelectedFile();
+			    	if (file == null) return;
+			    	if(!file.isDirectory()) {
+			    		JOptionPane.showMessageDialog(null, "Must pick a directory");
+			    		return;
+			    	}
+			    	File saveCache = new File(file.getAbsolutePath()+"/../"+file.getName()+".cache");
+			    	if(saveCache.exists()) {
+			    		if(saveCache.isFile()) {
+			    			int confirm = JOptionPane.showConfirmDialog(null, "There already exists a .cache file at:\n"+saveCache.getAbsolutePath()
+			    			+"\nDo you want to overwrite it?");
+			    			if(confirm == JOptionPane.OK_OPTION) {
+						    	cache = new Cache(saveCache);
+			    			} else
+			    				return;
+			    		} else
+			    			return;
+			    	} else
+				    	cache = new Cache(saveCache);
+			    	list.removeAllElements();
+			    	cache.loadDirectory(file);
+			    	cache.pack();
+			    	for(String s : cache.fileNames())
+						list.addElement(s);
+			    }
+			}
+			
+		});
+		add(btn_packDirectory);
 		
 		btn_pack = new JButton("Pack cache");
 		btn_pack.setBounds(560, 560, 120, 25);
@@ -266,6 +309,35 @@ public class MainApp extends JPanel {
 		});
 		add(btn_removeFile);
 		
+		radio_preserve = new JRadioButton("Keep image ratio");
+		radio_preserve.setBounds(30, 635, 140, 30);
+		radio_preserve.doClick();
+		radio_preserve.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				radio_stretch.setSelected(false);
+				radio_preserve.setSelected(true);
+				display.keepRatio = true;
+			}
+			
+		});
+		add(radio_preserve);
+		
+		radio_stretch = new JRadioButton("Fill");
+		radio_stretch.setBounds(170, 635, 120, 30);
+		radio_stretch.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				radio_preserve.setSelected(false);
+				radio_stretch.setSelected(true);
+				display.keepRatio = false;
+			}
+			
+		});
+		add(radio_stretch);
+		
 		progressBar = new JProgressBar(0, 100);
 		progressBar.setBounds(30, 690, 930, 30);
 		progressBar.setStringPainted(true);
@@ -322,7 +394,14 @@ public class MainApp extends JPanel {
 				aboutText += "This is a application tool written intended to manage game asset files.\n";
 				aboutText += "By allowing you to manage your game assets into 1 cache file.\n";
 				aboutText += "For more information, please check out:\n";
-				aboutText += "https://github.com/DTanJP";
+				aboutText += "https://github.com/DTanJP\n\n";
+				aboutText += "-- Changelog --\n";
+				String line = "";
+				//Reading the changelog is only available in the jar. Can't read it when ran in the IDE.
+				try(BufferedReader read = new BufferedReader(new InputStreamReader(MainApp.class.getResourceAsStream("CHANGELOG.txt")))) {
+					while((line = read.readLine()) != null)
+						aboutText += line+"\n";
+				} catch(Exception ex) {}
 				display.text.setText(aboutText);
 			}
 			
@@ -501,8 +580,6 @@ public class MainApp extends JPanel {
 				menuItem_extract.setEnabled(true);
 				menuItem_dump.setEnabled(true);
 				menuItem_addFile.setEnabled(true);
-				progressBar.setValue(cache.getLoadedFilesCount());
-				progressBar.setMaximum(cache.getTotalFiles());
 				
 				if(list_cache.getSelectedValue() == "" || list_cache.getSelectedValue() == null)
 					btn_removeFile.setEnabled(false);
@@ -551,8 +628,11 @@ public class MainApp extends JPanel {
 	private JFileChooser directoryChooser;
 	
 	//-- Buttons --//
-	private JButton btn_files, btn_cache, btn_createCache;
+	private JButton btn_files, btn_cache, btn_createCache, btn_packDirectory;
 	private JButton btn_pack, btn_extract, btn_dump, btn_removeFile;
+	
+	//-- Radio buttons --//
+	private JRadioButton radio_preserve, radio_stretch;
 	
 	//-- Menu --//
 	private JMenuBar menu_bar;

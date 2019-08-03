@@ -106,6 +106,27 @@ public class Cache {
 		}
 	}
 
+	public int loadDirectory(File directory) {
+		int files = 0;
+		if(directory == null) return 0;
+		if(!directory.exists()) return 0;
+		if(directory.isFile()) {
+			registerFile(directory.getAbsolutePath());
+			return 1;
+		}
+		File[] content = directory.listFiles();
+		for(File f : content) {
+			if(f.exists()) {
+				if(f.isFile()) {
+					registerFile(f.getAbsolutePath());
+					files++;
+				} else if(f.isDirectory())
+					files += loadDirectory(f);
+			}
+		}
+		return files;
+	}
+	
 	/** 
 	 * Quickly register + pack image into the cache
 	 * Note: Practical for use when needed to quickly

@@ -1,0 +1,15 @@
+v 1.0
+- Initial upload: 8/1/2019
+- Can load cache files into memory to view them
+- Can add/remove files to/from the cache file
+- Added help/about/credit to the menu bar
+
+v 1.1
+- Directory packing:
+Creates a cache file from all the file contents in a directory and it's subdirectories.
+The cache file will be created up 1 directory level.
+- Fix load cache bug where the previous cache contents still showed on the list
+- Added preserve ratio and fill radio buttons:
+Preserve keeps the ratio of the image aspect small enough to fit into the display panel 
+Fill just resizes the image to fill the display if it can't fit all of it into the view
+- Added changelog to About section

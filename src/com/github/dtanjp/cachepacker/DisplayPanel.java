@@ -90,24 +90,27 @@ public class DisplayPanel extends JPanel {
 			Image img = ImageIO.read(new ByteArrayInputStream(image));
 			int width = img.getWidth(null);
 			int height = img.getHeight(null);
-			int widthRatio = 0;
-			int heightRatio = 0;
 			if(width > 500 || height > 500) {
-				if(width < height) {
-					widthRatio = width/(height%width);
-					heightRatio = height/(height%width);
-					height = ((int)(500/heightRatio))*heightRatio;
-					width = (int) ((widthRatio/(float)heightRatio)*height);
-				} else {
-					widthRatio = width/(width%height);
-					heightRatio = height/(width%height);
-					width = ((int)(500/widthRatio))*widthRatio;
-					height = (int) ((heightRatio/(float)widthRatio)*width);
-				}
+				int original_width = width;
+			    int original_height = height;
+			    int new_width = width;
+			    int new_height = height;
+
+			    // first check if we need to scale width
+			    if (original_width > 500) {
+			        new_width = 500;
+			        new_height = (new_width * original_height) / original_width;
+			    }
+
+			    if (new_height > 500) {
+			        new_height = 500;
+			        new_width = (new_height * original_width) / original_height;
+			    }
+			    width = new_width;
+			    height = new_height;
 			}
 			ratioImage = img.getScaledInstance(width, height, Image.SCALE_SMOOTH);
-		} catch (IOException e) {
-		}
+		} catch (IOException e) {}
 	}
 	
 	/** Variables **/
@@ -115,5 +118,5 @@ public class DisplayPanel extends JPanel {
 	private Image ratioImage = null;
 	public JTextArea text = null;
 	public JScrollPane scroll = null;
-	private boolean keepRatio = true;
+	public boolean keepRatio = true;
 }
