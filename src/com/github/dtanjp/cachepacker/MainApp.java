@@ -301,6 +301,7 @@ public class MainApp extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String name = list_cache.getSelectedValue();
+				progressBar.setVisible(false);
 				list.removeElement(name);
 				cache.unregister(name);
 				label_cacheSize.setText("Cache size: "+cache.getCacheSize());
@@ -539,7 +540,7 @@ public class MainApp extends JPanel {
 					if(file == null || cache == null || !cache.exist()) return;
 					if(!file.exists()) return;
 					if(!file.isFile()) return;
-					progressBar.setMaximum(cache.getTotalFiles()+1);
+					progressBar.setVisible(false);
 					cache.registerFile(file.getAbsolutePath());
 					list.addElement(file.getName());
 				}
