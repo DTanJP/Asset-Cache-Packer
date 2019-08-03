@@ -13,3 +13,4 @@ The cache file will be created up 1 directory level.
 Preserve keeps the ratio of the image aspect small enough to fit into the display panel 
 Fill just resizes the image to fill the display if it can't fit all of it into the view
 - Added changelog to About section
+- Hide progress bar on add/remove file and show it only on loading caches
