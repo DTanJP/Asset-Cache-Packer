@@ -26,7 +26,7 @@ Instructions
 2. Afterwards you can add/remove files, but you must remember to pack the cache afterwards inorder to update the cache file
 Simply adding files only adds it to memory. By packing it, you overwrite the cache file with the current files in memory.
 The same applies for removing files.
-![Viewing a cache](https://raw.githubusercontent.com/DTanJP/Asset-Cache-Packer/master/images/Screenshot_2.png)
+![Viewing a cache](https://raw.githubusercontent.com/DTanJP/Asset-Cache-Packer/master/images/1.1%20Update.jpg)
 
 3. Double clicking the names of the files on the right lets you read them, unless if they're an image (jpg, png, gif), then they will be rendered onto the left panel
 
