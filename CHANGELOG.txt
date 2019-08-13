@@ -7,7 +7,7 @@ v 1.0
 v 1.1
 - Directory packing:
 Creates a cache file from all the file contents in a directory and it's subdirectories.
-The cache file will be created up 1 directory level.
+The cache file will be created outside of the directory
 - Fix load cache bug where the previous cache contents still showed on the list
 - Added preserve ratio and fill radio buttons:
 Preserve keeps the ratio of the image aspect small enough to fit into the display panel 
