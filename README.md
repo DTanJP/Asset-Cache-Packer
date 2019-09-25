@@ -5,7 +5,7 @@ I've written this application tool to create and edit .cache files
 It was written to combine game assets into 1 cache file.
 The assets can be retrieved during runtime in an array of byte form.
 
-[DOWNLOAD PREBUILT JAR](https://github.com/DTanJP/Asset-Cache-Packer/raw/master/Download/AssetPacker.jar)  
+[DOWNLOAD PREBUILT JAR](https://github.com/DTanJP/Asset-Cache-Packer/raw/master/Download/AssetPacker%201.1.jar)  
 [Standalone cache API](https://github.com/DTanJP/Asset-Cache)
 
 I tried to keep this as basic and simple as possible.
